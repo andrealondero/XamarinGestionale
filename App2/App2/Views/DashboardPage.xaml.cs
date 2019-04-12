@@ -18,5 +18,20 @@ namespace App2.Views
         {
             InitializeComponent();
         }
+
+        private void Timesheetcompiler_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new TSCompilerPage());
+        }
+
+        private void Timesheetviewer_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new TSViewerPage());
+        }
+
+        private void Confirmation_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new ConfirmationPage());
+        }
     }
 }

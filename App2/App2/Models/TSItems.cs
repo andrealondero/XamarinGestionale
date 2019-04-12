@@ -1,8 +1,5 @@
-﻿using Android.Text.Format;
-using SQLite;
+﻿using SQLite;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace App2.Models
 {
@@ -12,7 +9,7 @@ namespace App2.Models
         [PrimaryKey, AutoIncrement, NotNull, Unique]
         public int Id { get; set;}
 
-        [NotNull, Unique]
+        [Unique]
         public string UserID { get; set;}
 
         public int Status { get; set;}

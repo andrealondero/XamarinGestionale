@@ -5,53 +5,45 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace App2.Data
 {
     public class UsersManager
     {
-        SQLiteConnection dbConnect;
-        private string UsersTableName = "UsersTable";
+        readonly SQLiteConnection _dbUsers;
         public ObservableCollection<Users> Users { get; set; }
 
-        public UsersManager()
+        public UsersManager(string dbPath)
         {
-            dbConnect = DependencyService.Get<CustomSQLite>().GetConnection();
-            dbConnect.CreateTable<Users>();
+            _dbUsers = new SQLiteConnection(dbPath);
+            _dbUsers.CreateTable<Users>();
 
-            this.Users = new ObservableCollection<Users>(dbConnect.Table<Users>());
+            //this.Users = new ObservableCollection<Users>(_dbUsers.Table<Users>());
 
-            if (!dbConnect.Table<Users>().Any())
+            /*if (!_dbUsers.Table<Users>().Any())
             {
                 AddNewUsers();
-            }
+            }*/
         }
 
-        public void AddNewUsers()
+        public List<Users> GetAllU()
+        {
+            return _dbUsers.Table<Users>().ToList();
+        }
+        public int SaveUsers(Users users)
+        {
+            return _dbUsers.Insert(users);
+        }
+
+        /*public void AddNewUsers()
         {
             this.Users.Add(new Users
             {
-                Mail = "andrealondero",
-                Password = "wwww",
+                Mail = "username...",
+                Password = "password...",
             });
-        }
-
-        /*public List<Users> GetAllU()
-        {
-            return dbConnect.Query<Users>("Select * From [" + UsersTable + "] Order by Id ASC");
-        }
-        public int SaveTS(Users u)
-        {
-            return dbConnect.Insert(u);
-        }
-        public int DeleteTS(Users u)
-        {
-            return dbConnect.Delete(u);
-        }
-        public int EditTS(Users u)
-        {
-            return dbConnect.Update(u);
         }*/
     }
 }

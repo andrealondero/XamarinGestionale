@@ -20,7 +20,7 @@ namespace App2.Views
         public HomePageLogin()
         {
             InitializeComponent();
-            Init(); 
+            Init();
         }
 
         void Init()
@@ -29,9 +29,30 @@ namespace App2.Views
             entryPassword.Completed += (s, e) => log(s, e);
         }
 
-        private void log(object s, EventArgs e)
+        void log(object s, EventArgs e)
         {
-            Navigation.PushAsync(new DashboardPage());
+            string name = entryUser.Text;
+            User user = new User(entryUser.Text, entryPassword.Text);
+            if (user.CheckInfo())
+            {
+                DisplayAlert("Your Logged", $"{name}", "OK");
+                App.UsersManager.SaveUsers(new Users
+                {
+                    Type = 1,
+                    Mail = entryUser.Text,
+                    Password = entryPassword.Text,
+                });
+
+                entryUser.Text = entryPassword.Text = string.Empty;
+                Navigation.PushAsync(new DashboardPage());
+            }
+
+            else
+            {
+                DisplayAlert("Login failed", $"{name} not present", "OK");
+            }
         }
     }
 }
+        
+    

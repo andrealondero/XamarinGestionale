@@ -22,14 +22,14 @@
 
                 <local:CustomEntry
                     x:Name="entryUser"
-                    Text="{Binding Mail}" IsEnabled="True"
+                    Text="{Binding Mail}"
                     Placeholder="Mail"
                     PlaceholderColor="#FF5657"
                     HorizontalTextAlignment="Center"/>
 
                 <local:CustomEntry
                     x:Name="entryPassword"
-                    Text="{Binding Password}" IsEnabled="True"
+                    Text="{Binding Password}"
                     Placeholder="Password" IsPassword="True"
                     PlaceholderColor="#FF5657"
                     HorizontalTextAlignment="Center"/>

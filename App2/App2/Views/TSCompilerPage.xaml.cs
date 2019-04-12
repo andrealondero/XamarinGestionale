@@ -14,14 +14,33 @@ namespace App2.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class TSCompilerPage : ContentPage
     {
-        private TSItemsManager dataAccess;
+        //private TSItemsManager dataAccess;
         public TSCompilerPage()
         {
             InitializeComponent();
-            this.dataAccess = new TSItemsManager();
+            //this.dataAccess = new TSItemsManager();
         }
 
         protected override void OnAppearing()
+        {
+            base.OnAppearing();
+        }
+
+        void OnAdd(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(entryWorkedHours.Text) && !string.IsNullOrWhiteSpace(entryDescription.Text))
+            {
+                App.TSItemsManager.AddTimeSheet(new TSItems
+                {
+                    Hours = int.Parse(entryWorkedHours.Text),
+                    Description = entryDescription.Text,
+                });
+
+                entryWorkedHours.Text = entryDescription.Text = string.Empty;
+            }
+        }
+
+        /*protected override void OnAppearing()
         {
             base.OnAppearing();
 
@@ -30,9 +49,8 @@ namespace App2.Views
 
         public void OnAdd(object sender, EventArgs e)
         {
-            this.dataAccess.AddNewTSItems();
-        }
-
+            this.dataAccess.AddTimeSheet();
+        }*/
 
     private void OnEsc_Clicked(object sender, EventArgs e)
         {

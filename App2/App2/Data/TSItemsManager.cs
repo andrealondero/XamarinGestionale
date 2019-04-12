@@ -11,22 +11,31 @@ namespace App2.Data
 {
     public class TSItemsManager
     {
-        private SQLiteConnection dbConnect;
-        private string TSItemsTable = "TSItems";
-        private static object collisionLock = new object();
-        public ObservableCollection<TSItems> TSItems { get; set; }
+        readonly SQLiteConnection _dbTSItems;
+        //public ObservableCollection<TSItems> TSItems { get; set; }
 
-        public TSItemsManager()
+        public TSItemsManager(string dbPath)
         {
-            dbConnect = DependencyService.Get<CustomSQLite>().GetConnection();
-            dbConnect.CreateTable<TSItems>();
+            _dbTSItems = new SQLiteConnection(dbPath);
+            _dbTSItems.CreateTable<TSItems>();
+        }
 
-            this.TSItems = new ObservableCollection<TSItems>(dbConnect.Table<TSItems>());
+        public List<TSItems> GetTSItems()
+        {
+            return _dbTSItems.Table<TSItems>().ToList();
+        }
 
-            if (!dbConnect.Table<TSItems>().Any())
+        public int AddTimeSheet(TSItems ts)
+        {
+            return _dbTSItems.Insert(ts);
+        } 
+
+            /*this.TSItems = new ObservableCollection<TSItems>(_dbTSItems.Table<TSItems>());
+
+            if (!_dbTSItems.Table<TSItems>().Any())
             {
                 AddNewTSItems();
-            } 
+            }
         }
 
         public void AddNewTSItems()
@@ -41,13 +50,13 @@ namespace App2.Data
 
         public List<TSItems> GetAllTS()
         {
-            return dbConnect.Query<TSItems>("Select * From [" + TSItemsTable + "] Order by Date ASC");
+            return _dbTSItems.Query<TSItems>("Select * From [" + TSItemsTable + "] Order by Date ASC");
         }
         public IEnumerable<TSItems> GetFilteredTS(int status)
         {
             lock (collisionLock)
             {
-                var query = from tsI in dbConnect.Table<TSItems>()
+                var query = from tsI in _dbTSItems.Table<TSItems>()
                             where tsI.Status == status
                             select tsI;
                 return query.AsEnumerable();
@@ -57,7 +66,7 @@ namespace App2.Data
         {
             lock (collisionLock)
             {
-                return dbConnect.
+                return _dbTSItems.
                     Query<TSItems>
                     ("SELECT * FROM Item WHERE Status = 'Confermato'").AsEnumerable();
             }
@@ -67,22 +76,22 @@ namespace App2.Data
         {
             lock (collisionLock)
             {
-                return dbConnect.Table<TSItems>().
+                return _dbTSItems.Table<TSItems>().
                     FirstOrDefault(tsitem => tsitem.Status == i);
             }
         }
         public int SaveTS(TSItems ts)
         {
-            return dbConnect.Insert(ts);
+            return _dbTSItems.Insert(ts);
         }
         public int DeleteTS(TSItems ts)
         {
-            return dbConnect.Delete(ts);
+            return _dbTSItems.Delete(ts);
         }
         public int EditTS(TSItems ts)
         {
-            return dbConnect.Update(ts);
-        }
+            return _dbTSItems.Update(ts);
+        }*/
     }
 }
 

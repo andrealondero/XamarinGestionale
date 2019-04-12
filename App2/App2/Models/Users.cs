@@ -9,33 +9,37 @@ namespace App2.Models
     public class Users
     {
         [PrimaryKey, AutoIncrement, NotNull, Unique]
-        public int Id { get; set;}
+        public int Id { get; set; }
 
         [NotNull]
-        public int Type { get; set;}
+        public int Type { get; set; }
 
         [NotNull, Unique, MaxLength(20)]
-        public string Mail { get; set;}
+        public string Mail { get; set; }
 
         [NotNull, Unique, MaxLength(20)]
-        public string Password { get; set;}
+        public string Password { get; set; }
         public DateTime CR_date { get; set; }
         public DateTime MOD_date { get; set; }
 
-        /*public Users() { }
-        public Users(int dipendente, string andrealondero, string aaaa)
+    }
+
+    public class User : Users
+
+    {
+        public User(string UserName, string Password)
         {
-            this.Type = dipendente;
-            this.Mail = andrealondero;
-            this.Password = aaaa;
+            this.Mail = UserName;
+            this.Password = Password;
         }
 
         public bool CheckInfo()
         {
-            if (this.Mail.Equals("andrealondero") && this.Password.Equals("wwww"))
+            if (this.Mail.Equals("andrealondero") && this.Password.Equals("abab"))
                 return true;
             else
                 return false;
-        }*/
+        }
     }
+
 }

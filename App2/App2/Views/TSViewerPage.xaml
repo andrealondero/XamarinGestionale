@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="App2.Views.TSViewerPage">
+
+    <ContentPage.Content>
+        <StackLayout x:Name="MainLayout" BackgroundColor="White" Margin="20,20,20,20">
+
+            <Picker x:Name="PersonalizedSearch" SelectedIndex="{Binding Status}" HorizontalOptions="FillAndExpand">
+                <Picker.Items>
+                    <x:String>1</x:String>
+                </Picker.Items>
+            </Picker>
+
+            <StackLayout x:Name="ListLayout" BackgroundColor="White" VerticalOptions="StartAndExpand" Margin="0,0,0,20">
+
+            <ListView x:Name="tslist">
+                <ListView.ItemTemplate>
+
+                    <DataTemplate>
+
+                        <ViewCell>
+
+                            <StackLayout Orientation="Horizontal" HorizontalOptions="Fill">
+
+                                <Label Text = "{Binding Date}" />
+                                <Label Text = "{Binding Hours}" />
+                                <Label Text = "{Binding Description}" />
+                                <Label Text = "{Binding Status}" />
+
+                            </StackLayout>
+
+                        </ViewCell>
+
+                    </DataTemplate>
+
+                </ListView.ItemTemplate>
+            </ListView>
+                
+        </StackLayout>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
