@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:App2.CustomViews; assembly=App2"
+             x:Class="App2.Views.DashboardPage">
+    <ContentPage.Content>
+        <StackLayout x:Name="MainLayout" BackgroundColor="White" Margin="60,0,60,0" VerticalOptions="Center">
+            
+            <local:CustomButton
+                x:Name="timesheetcompiler"
+                Text="TIMESHEET COMPILER"
+                BackgroundColor="#2D8183"
+                Margin="0,20,0,20"/>
+            
+            <local:CustomButton
+                x:Name="timesheetviewer"
+                Text="TIMESHEET VIEWER"
+                BackgroundColor="#2D8183"
+                Margin="0,20,0,20"/>
+            
+            <local:CustomButton
+                x:Name="confirmation"
+                Text="CONFIRMATION"
+                BackgroundColor="#2D8183"
+                Margin="0,20,0,20"/>
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

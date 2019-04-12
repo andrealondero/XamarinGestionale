@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:sys = "App2:System; assembly = mscorlib"
+             xmlns:local="clr-namespace:App2.CustomViews; assembly=App2"
+             x:Class="App2.Views.TSCompilerPage">
+    <ContentPage.Content>
+        <StackLayout x:Name="MainLayout" BackgroundColor="White" Margin="20,40,20,0">
+            
+            <DatePicker
+                BindingContext="{Binding Date}"
+                VerticalOptions="StartAndExpand"
+                BackgroundColor="#2D8183"
+                Format="yyyy-MM-dd"/>
+                <!--Date="{x:Static sys:DateTime.Now}"-->
+            
+            <StackLayout x:Name="EntryLayout" BackgroundColor="White" VerticalOptions="CenterAndExpand">
+
+                <local:CustomEntry
+                    Margin="50,0,50,5"
+                    x:Name="entryWorkedHours"
+                    Text="{Binding Hours}" IsEnabled="True"
+                    Placeholder="Worked Hours"
+                    PlaceholderColor="#FF5657"
+                    HorizontalTextAlignment="Center"/>
+
+                <Editor
+                    x:Name="entryDescription"
+                    Text="{Binding Description}"
+                    Placeholder="Description"
+                    PlaceholderColor="#FF5657"
+                    HeightRequest="150"/>
+
+            </StackLayout>
+
+            <StackLayout x:Name="ButtonLayout" BackgroundColor="White" Orientation="Horizontal" Margin="50,0,50,50">
+
+                <local:CustomButton
+                    HorizontalOptions="StartAndExpand"
+                    BackgroundColor="#2D8183"
+                    Text="SAVE"
+                    Clicked="OnAdd"/>
+
+                <local:CustomButton
+                    HorizontalOptions="EndAndExpand"
+                    BackgroundColor="#2D8183"
+                    Text="ESC"
+                    Clicked="OnEsc_Clicked"/>
+
+            </StackLayout>
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

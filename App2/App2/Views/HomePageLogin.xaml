@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:App2.CustomViews; assembly=App2"
+             x:Class="App2.Views.HomePageLogin">
+
+    <ContentPage.Content>
+
+        <StackLayout x:Name="MainLayout" BackgroundColor="White">
+
+            <StackLayout x:Name="LogoLayout" VerticalOptions="StartAndExpand" Margin="0,20,0,0">
+
+                <Image VerticalOptions="Center"
+                       x:Name="Logo"
+                       HeightRequest="120"
+                       Source="roundedicon_logo_aryon.png"
+                       />
+
+            </StackLayout>
+
+            <StackLayout x:Name="EntryDataLayout" VerticalOptions="StartAndExpand" Margin="20,0,20,20">
+
+                <local:CustomEntry
+                    x:Name="entryUser"
+                    Text="{Binding Mail}" IsEnabled="True"
+                    Placeholder="Mail"
+                    PlaceholderColor="#FF5657"
+                    HorizontalTextAlignment="Center"/>
+
+                <local:CustomEntry
+                    x:Name="entryPassword"
+                    Text="{Binding Password}" IsEnabled="True"
+                    Placeholder="Password" IsPassword="True"
+                    PlaceholderColor="#FF5657"
+                    HorizontalTextAlignment="Center"/>
+
+            </StackLayout>
+
+            <local:CustomButton
+                Text="LOGIN"
+                BackgroundColor="#2D8183"
+                Margin="50,0,50,80"
+                VerticalOptions="CenterAndExpand"
+                Clicked="log"/>
+
+        </StackLayout>
+
+    </ContentPage.Content>
+
+</ContentPage>
